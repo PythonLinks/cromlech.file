@@ -31,3 +31,13 @@ class IFile(Interface):
         description=u"Size in bytes",
         readonly=True,
         required=True)
+
+
+class IFileField(Interface):
+    """A field storing binary datas.
+    """
+
+
+class IImageField(IFileField):
+    """Marker interface for fields storing images.
+    """

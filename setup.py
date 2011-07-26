@@ -3,14 +3,11 @@
 import os
 from setuptools import setup, find_packages
 
-
 version = '0.1'
 
 install_requires = [
-    'grokcore.component',
     'setuptools',
     'zope.component',
-    'zope.contenttype',
     'zope.interface',
     'zope.schema',
     'zope.size',

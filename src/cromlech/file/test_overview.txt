@@ -1,0 +1,73 @@
+cromlech.file overview
+======================
+
+Fields
+------
+
+There are two fields provided by ``cromlech.file``: `FileField` and
+`ImageField`. They are both have a common base::  
+
+    >>> from cromlech.file.interfaces import IImageField, IFileField
+    >>> from cromlech.file.fields import FileField, ImageField
+
+    >>> IImageField.extends(IFileField)
+    True
+    >>> isinstance(ImageField(), FileField)
+    True
+
+
+Property
+--------
+
+factory
+~~~~~~~
+
+    >>> from cromlech.file import IFile, FileProperty, FileField
+    >>> from zope.interface import Interface, implements
+
+
+    >>> class IContent(Interface):
+    ...     binary = FileField(title=u"Binary data")
+
+
+    >>> class MyFile(object):
+    ...     """My own file type.
+    ...     """
+    ...     implements(IFile)
+    ...
+    ...     def __init__(self, filename=None, ct=None, data=None):
+    ...         self.filename = filename
+    ...         self.content_type = ct
+    ...         self.data = data
+    ...
+    ...     @property
+    ...     def size(self):
+    ...         return len(self.data)
+
+
+    >>> class CustomContent(object):
+    ...     implements(IContent)
+    ...     binary = FileProperty(IContent['binary'], MyFile)
+
+
+    >>> custom = CustomContent()
+    >>> custom.binary = 'test'
+    >>> custom.binary
+    <...MyFile object at ...>
+
+
+Error
+~~~~~
+ 
+    >>> class MyFalseFile(object):
+    ...     """My own file type.
+    ...     """
+
+    >>> class FaultyContent(object):
+    ...     implements(IContent)
+    ...     binary = FileProperty(IContent['binary'], MyFalseFile)
+    Traceback (most recent call last):
+    ...
+    ValueError: Provided factory is not a valid IFile
+
+
