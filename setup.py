@@ -18,7 +18,7 @@ tests_require = [
 
 setup(name='cromlech.file',
       version=version,
-      description="",
+      description="A file representation core package for Cromlech",
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       classifiers=[
