@@ -3,14 +3,12 @@
 import os
 from setuptools import setup, find_packages
 
-version = '0.1'
+version = '1.0-crom'
 
 install_requires = [
     'setuptools',
-    'zope.component',
     'zope.interface',
     'zope.schema',
-    'zope.size',
     ]
 
 tests_require = [

@@ -2,7 +2,7 @@
 
 from zope.schema import Field
 from zope.interface import implements
-from cromlech.file import IFileField, IImageField
+from .interfaces import IFileField, IImageField
 
 
 class FileField(Field):
