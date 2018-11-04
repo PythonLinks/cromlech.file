@@ -12,7 +12,7 @@ class IFile(Interface):
         required=False,
         default=u'')
 
-    content_type = schema.BytesLine(
+    content_type = schema.TextLine(
         title=u'Content type',
         description=u'The content type identifies the type of data.',
         default='',
@@ -22,8 +22,8 @@ class IFile(Interface):
     data = schema.Bytes(
         title=u'Data',
         description=u'The actual content of the object.',
-        default='',
-        missing_value='',
+        default=b'',
+        missing_value=b'',
         required=False)
 
     size = schema.Int(

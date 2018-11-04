@@ -3,13 +3,13 @@
 from cromlech.file import IFile
 from zope.size import byteDisplay
 from zope.size.interfaces import ISized
-from zope.interface import implements
+from zope.interface import implementer
 from zope.component import adapts
 
-
+@implementer(ISized)
 class Sized(object):
     adapts(IFile)
-    implements(ISized)
+
 
     def __init__(self, context):
         self.context = context
